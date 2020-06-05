@@ -814,7 +814,11 @@
                     _react2.default.createElement(
                         'div',
                         { id: 'formBuilder-form', className: 'formBuilderGroup' },
-                        this.state.fieldsToEdit.map(function (item) {
+                        this.state.fieldsToEdit.length == 0 ? _react2.default.createElement(
+                            'div',
+                            null,
+                            'No fields'
+                        ) : this.state.fieldsToEdit.map(function (item) {
                             return _react2.default.createElement(
                                 'div',
                                 { key: item.number, 'data-order-form-builder': item.number, draggable: 'true', className: item.classList + " elementOFDrag" },

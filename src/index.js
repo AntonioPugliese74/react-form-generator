@@ -721,14 +721,13 @@ class FormBuilder extends Component {
         return (
         <div id="formBuilder">
             <div id="formBuilder-form" className="formBuilderGroup">
-                {this.state.fieldsToEdit.map(item=>
-                            (
-                            <div key={item.number}  data-order-form-builder={item.number} draggable="true" className={item.classList+" elementOFDrag"}>
-                    {console.log(item.optionalJson)}
-                <FieldInGenerator deleteField={this.deleteField} addToFormJson={this.addToFormJson}  actualElem={item} definedFields={this.fields} jsonData={item.optionalJson || this.formJson[item.index] || {}} />
-                    </div>
-                )
-                )}
+                {(this.state.fieldsToEdit.length == 0) ? <div>No fields</div> :
+                    this.state.fieldsToEdit.map(item=> (
+                    <div key={item.number}  data-order-form-builder={item.number} draggable="true" className={item.classList+" elementOFDrag"}>
+                            {console.log(item.optionalJson)}
+                            <FieldInGenerator deleteField={this.deleteField} addToFormJson={this.addToFormJson}  actualElem={item} definedFields={this.fields} jsonData={item.optionalJson || this.formJson[item.index] || {}} />
+                    </div>))
+                }
             </div>
             <div id="optionColumn">
             {Object.keys(this.fields).map((field)=>{
