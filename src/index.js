@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './FormBuilder.css';
 import Field from './Field.js'
 import FieldInGenerator from './FieldInGenerator.js'
-import { T } from "../utils/Helpers"
+import { T } from "../../../Scripts/utils/Helpers"
 
 class FormBuilder extends Component {
 

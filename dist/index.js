@@ -1,8 +1,8 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', './Field.js', './FieldInGenerator.js', '../utils/Helpers', './FormBuilder.css'], factory);
+        define(['exports', 'react', './Field.js', './FieldInGenerator.js', '../../../Scripts/utils/Helpers', './FormBuilder.css'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('./Field.js'), require('./FieldInGenerator.js'), require('../utils/Helpers'), require('./FormBuilder.css'));
+        factory(exports, require('react'), require('./Field.js'), require('./FieldInGenerator.js'), require('../../../Scripts/utils/Helpers'), require('./FormBuilder.css'));
     } else {
         var mod = {
             exports: {}
