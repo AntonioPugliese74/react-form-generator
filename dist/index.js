@@ -254,20 +254,20 @@
                         }
                     }
                 },
-                autocomplete: {
-                    classIcon: 'fa-clone',
-                    showFields: new Set(['optionBuilder']),
-                    label: "Text autocomplete",
-                    typeInput: "autocomplete",
-                    fields: {
-                        'optionBuilder': {
-                            'inputType': "optionBuilder",
-                            'label': 'Options',
-                            'value': "",
-                            'name': 'options'
-                        }
-                    }
-                },
+                // autocomplete: {
+                //     classIcon: 'fa-clone',
+                //     showFields: new Set(['optionBuilder']),
+                //     label: "Text autocomplete",
+                //     typeInput: "autocomplete",
+                //     fields: {
+                //         'optionBuilder': {
+                //             'inputType': "optionBuilder",
+                //             'label': 'Options',
+                //             'value': "",
+                //             'name': 'options'
+                //         },
+                //     }
+                // },
                 inputRadio: {
                     classIcon: 'fa-clipboard-list',
                     showFields: new Set(['optionBuilder']),
@@ -311,37 +311,48 @@
                     },
                     banField: new Set(['placeholder'])
                 },
-                fileUpload: {
-                    classIcon: 'fa-download',
-                    showFields: new Set(['optionBuilder']),
-                    label: "Upload file",
-                    typeInput: "fileUpload",
-                    fields: {}
-                },
-                button: {
-                    classIcon: 'fa-circle',
-                    showFields: new Set(['type']),
-                    label: "Button",
-                    typeInput: "button",
-                    fields: {
-                        'type': {
-                            'inputType': "select",
-                            'label': 'Type',
-                            'name': 'type',
-                            'options': [{
-                                'label': 'Button',
-                                'value': 'button'
-                            }, {
-                                'label': 'Submit',
-                                'value': 'submit'
-                            }, {
-                                'label': 'Reset',
-                                'value': 'reset'
-                            }]
-                        }
-                    },
-                    banField: new Set(['placeholder', 'defaultValue', 'required', 'tipText', 'name'])
-                },
+                // fileUpload: {
+                //     classIcon: 'fa-download',
+                //     showFields: new Set(['optionBuilder']),
+                //     label: "Upload file",
+                //     typeInput: "fileUpload",
+                //     fields: {
+                //     }
+                // },
+                // button: {
+                //     classIcon: 'fa-circle',
+                //     showFields: new Set(['type']),
+                //     label: "Button",
+                //     typeInput: "button",
+                //     fields: {
+                //         'type' : {
+                //             'inputType': "select",
+                //             'label': 'Type',
+                //             'name': 'type',
+                //             'options': [
+                //                 {
+                //                     'label': 'Button',
+                //                     'value': 'button'
+                //                 },
+                //                 {
+                //                     'label': 'Submit',
+                //                     'value': 'submit'
+                //                 },
+                //                 {
+                //                     'label': 'Reset',
+                //                     'value': 'reset'
+                //                 },
+                //             ]
+                //         },
+                //     },
+                //     banField: new Set([
+                //         'placeholder',
+                //         'defaultValue',
+                //         'required',
+                //         'tipText',
+                //         'name'
+                //     ])
+                // },
                 header: {
                     classIcon: 'fa-heading',
                     showFields: new Set(['headerLevel', 'Headertext']),
@@ -397,21 +408,30 @@
                     },
                     banField: new Set(['placeholder', 'defaultValue', 'required', 'tipText', 'required', 'label', 'name'])
                 },
-                hiddenInput: {
-                    classIcon: 'fa-eye-slash',
-                    showFields: new Set(['value']),
-                    label: "Hidden input",
-                    typeInput: "hiddenInput",
-                    fields: {
-                        'value': {
-                            'inputType': "text",
-                            'label': 'Value',
-                            'value': "",
-                            'name': 'value'
-                        }
-                    },
-                    banField: new Set(['placeholder', 'defaultValue', 'required', 'tipText', 'required', 'label', 'defaultValue', 'class'])
-                },
+                // hiddenInput: {
+                //     classIcon: 'fa-eye-slash',
+                //     showFields: new Set(['value']),
+                //     label: "Hidden input",
+                //     typeInput: "hiddenInput",
+                //     fields: {
+                //         'value': {
+                //             'inputType': "text",
+                //             'label': 'Value',
+                //             'value': "",
+                //             'name': 'value'
+                //         },
+                //     },
+                //     banField: new Set([
+                //         'placeholder',
+                //         'defaultValue',
+                //         'required',
+                //         'tipText',
+                //         'required',
+                //         'label',
+                //         'defaultValue',
+                //         'class'
+                //     ])
+                // },
                 toAllFields: {
                     showFields: new Set(['required', 'label']),
                     fields: {
