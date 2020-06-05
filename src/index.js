@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './FormBuilder.css';
 import Field from './Field.js'
 import FieldInGenerator from './FieldInGenerator.js'
+import { T } from "../../utils/Helpers"
+
 class FormBuilder extends Component {
 
     jsonToLoad=[]
@@ -30,7 +32,7 @@ class FormBuilder extends Component {
             this.state.fieldsToEdit = arrayRes
             this.state.formToGenerate = []
 
-
+            T._("","");
         }
     }
 
@@ -59,8 +61,6 @@ class FormBuilder extends Component {
     dragedElement
     pos = 0
     outsideForm = false
-
-
 
     componentDidMount(){
 
@@ -264,29 +264,28 @@ class FormBuilder extends Component {
             }
     }
 
-
     fields = {
         text: {
             showFields: new Set(['type']),
-            classIcon: 'fa-pencil-alt',// class for icon from notawesome
-            label: "Text field",//show this label
+            classIcon: 'text_fields',// class for icon from notawesome
+            label: T._("Text field","Admin"),//show this label
             typeInput: "text",//Field recognize by this variable
             fields: {
                 'type' : {
                     'inputType': "select",
-                    'label': 'Type',
+                    'label': T._('Type','Admin'),
                     'name': 'type',
                     'options': [
                         {
-                            'label': 'text',
+                            'label': T._('text','Admin'),
                             'value': 'text'
                         },
                         {
-                            'label': 'email',
+                            'label': T._('email','Admin'),
                             'value': 'email'
                         },
                         {
-                            'label': 'password',
+                            'label': T._('password','Admin'),
                             'value': 'password'
                         },
                         {
@@ -322,7 +321,7 @@ class FormBuilder extends Component {
             }
         },
         number: {
-            classIcon: 'fa-calculator',
+            classIcon: 'calculate',
             showFields: new Set([]),
             label: "Number",
             typeInput: "number",
@@ -357,20 +356,20 @@ class FormBuilder extends Component {
             }
         },
         textArea: {
-            classIcon: 'fa-align-left',
-            label: "Text area",
+            classIcon: 'format_align_left',
+            label: T._("Text area","Admin"),
             typeInput: "textArea",
             fields: {
                 'minLength': {
                     'inputType': "number",
-                    'label': 'Min length',
+                    'label': T._('Min length','Admin'),
                     'value': "",
                     'step' : '1',
                     'name': 'min_length'
                 },
                 'maxLength': {
                     'inputType': "number",
-                    'label': 'Max length',
+                    'label': T._('Max length','Admin'),
                     'value': "",
                     'step' : '1',
                     'name': 'max_length'
@@ -384,7 +383,7 @@ class FormBuilder extends Component {
                 },
                 'rows': {
                     'inputType': "number",
-                    'label': 'Rows',
+                    'label': T._('Rows','Admin'),
                     'value': "10",
                     'step' : '1',
                     'name': 'rows'
@@ -406,42 +405,42 @@ class FormBuilder extends Component {
         //     }
         // },
         inputRadio: {
-            classIcon: 'fa-clipboard-list',
+            classIcon: 'radio_button_checked',
             showFields: new Set(['optionBuilder']),
-            label: "Input Radio group",
+            label: T._("Input Radio group","Admin"),
             typeInput: "inputRadio",
             fields: {
                 'optionBuilder': {
                     'inputType': "optionBuilder",
-                    'label': 'Options',
+                    'label': T._('Options','Admin'),
                     'value': "",
                     'name': 'options'
                 },
             }
         },
         inputCheckbox: {
-            classIcon: 'fa-check-square',
+            classIcon: 'check_box',
             showFields: new Set([]),
-            label: "Checkbox",
+            label: T._("Checkbox","Admin"),
             typeInput: "inputCheckbox",
             fields: {
                 'defaultSelected' : {
                     'inputType': "checkbox",
-                    'label': 'Default selected',
+                    'label': T._('Default selected','Admin'),
                     'value': false,
                     'name': 'defaultSelected'
                 },
             }
         },
         select: {
-            classIcon: 'fa-flag',
+            classIcon: 'view_list',
             showFields: new Set(['optionBuilder']),
-            label: "Select",
+            label: T._("Select","Admin"),
             typeInput: "select",
             fields: {
                 'optionBuilder': {
                     'inputType': "optionBuilder",
-                    'label': 'Options',
+                    'label': T._('Options','Admin'),
                     'value': "",
                     'name': 'options'
                 },
@@ -493,14 +492,14 @@ class FormBuilder extends Component {
         //     ])
         // },
         header: {
-            classIcon: 'fa-heading',
+            classIcon: 'drag_handle',
             showFields: new Set(['headerLevel','Headertext']),
-            label: "Header",
+            label: T._("Header","Admin"),
             typeInput: "header",
             fields: {
                 'Headertext' : {
                     'inputType': "text",
-                    'label': 'Header text',
+                    'label': T._('Header text','Admin'),
                     'value': "",
                     'name': 'headertext'
                 },
@@ -547,9 +546,9 @@ class FormBuilder extends Component {
             ])
         },
         paragraph: {
-            classIcon: 'fa-paragraph',
+            classIcon: 'format_textdirection_l_to_r',
             showFields: new Set(['content']),
-            label: "Paragraph",
+            label: T._("Paragraph","Admin"),
             typeInput: "paragraph",
             fields: {
                 'content': {
@@ -557,7 +556,7 @@ class FormBuilder extends Component {
                     'label': 'Content',
                     'value': "",
                     'name': 'content',
-                    'placeholder': 'Put paragraph content'
+                    'placeholder': T._('Put paragraph content','Admin')
                 },
             },
             banField: new Set([
@@ -602,19 +601,19 @@ class FormBuilder extends Component {
             fields: {
                 'label' : {
                     'inputType': "text",
-                    'label': 'Label',
+                    'label': T._('Label','Admin'),
                     'value': "",
                     'name': 'label'
                 },
                 'name' : {
                     'inputType': "text",
-                    'label': 'Name',
+                    'label': T._('Name','Admin'),
                     'value': "",
                     'name': 'name'
                 },
                 'required' : {
                     'inputType': "checkbox",
-                    'label': 'Required',
+                    'label': T._('Required','Admin'),
                     'value': false,
                     'name': 'required'
                 },
@@ -626,7 +625,7 @@ class FormBuilder extends Component {
                 },
                 'tipText': {
                     'inputType': "text",
-                    'label': 'Tip',
+                    'label': T._('Tip','Admin'),
                     'value': "",
                     'name': 'tipText'
                 },
@@ -638,17 +637,13 @@ class FormBuilder extends Component {
                 },
                 'defaultValue': {
                     'inputType': "text",
-                    'label': 'Default value',
+                    'label': T._('Default value','Admin'),
                     'value': "",
                     'name': 'value'
                 },
             },
         }
     }
-
-
-
-
 
     state={
         fieldsInForm: [],

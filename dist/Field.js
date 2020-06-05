@@ -91,7 +91,11 @@
                     _react2.default.createElement(
                         'span',
                         null,
-                        this.props['data-field']['classIcon'] ? _react2.default.createElement('i', { className: 'fas ' + this.props['data-field']['classIcon'] }) : "",
+                        this.props['data-field']['classIcon'] ? _react2.default.createElement(
+                            'i',
+                            { className: 'material-icons' },
+                            this.props['data-field']['classIcon']
+                        ) : "",
                         this.props['data-field']['label']
                     )
                 );

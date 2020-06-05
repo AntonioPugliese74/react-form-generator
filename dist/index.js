@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', './Field.js', './FieldInGenerator.js', './FormBuilder.css'], factory);
+        define(['exports', 'react', './Field.js', './FieldInGenerator.js', '../../utils/Helpers', './FormBuilder.css'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('./Field.js'), require('./FieldInGenerator.js'), require('./FormBuilder.css'));
+        factory(exports, require('react'), require('./Field.js'), require('./FieldInGenerator.js'), require('../../utils/Helpers'), require('./FormBuilder.css'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.Field, global.FieldInGenerator, global.FormBuilder);
+        factory(mod.exports, global.react, global.Field, global.FieldInGenerator, global.Helpers, global.FormBuilder);
         global.index = mod.exports;
     }
-})(this, function (exports, _react, _Field, _FieldInGenerator) {
+})(this, function (exports, _react, _Field, _FieldInGenerator, _Helpers) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -137,22 +137,22 @@
             _this.fields = {
                 text: {
                     showFields: new Set(['type']),
-                    classIcon: 'fa-pencil-alt', // class for icon from notawesome
-                    label: "Text field", //show this label
+                    classIcon: 'text_fields', // class for icon from notawesome
+                    label: _Helpers.T._("Text field", "Admin"), //show this label
                     typeInput: "text", //Field recognize by this variable
                     fields: {
                         'type': {
                             'inputType': "select",
-                            'label': 'Type',
+                            'label': _Helpers.T._('Type', 'Admin'),
                             'name': 'type',
                             'options': [{
-                                'label': 'text',
+                                'label': _Helpers.T._('text', 'Admin'),
                                 'value': 'text'
                             }, {
-                                'label': 'email',
+                                'label': _Helpers.T._('email', 'Admin'),
                                 'value': 'email'
                             }, {
-                                'label': 'password',
+                                'label': _Helpers.T._('password', 'Admin'),
                                 'value': 'password'
                             }, {
                                 'label': 'tel',
@@ -185,7 +185,7 @@
                     }
                 },
                 number: {
-                    classIcon: 'fa-calculator',
+                    classIcon: 'calculate',
                     showFields: new Set([]),
                     label: "Number",
                     typeInput: "number",
@@ -220,20 +220,20 @@
                     }
                 },
                 textArea: {
-                    classIcon: 'fa-align-left',
-                    label: "Text area",
+                    classIcon: 'format_align_left',
+                    label: _Helpers.T._("Text area", "Admin"),
                     typeInput: "textArea",
                     fields: {
                         'minLength': {
                             'inputType': "number",
-                            'label': 'Min length',
+                            'label': _Helpers.T._('Min length', 'Admin'),
                             'value': "",
                             'step': '1',
                             'name': 'min_length'
                         },
                         'maxLength': {
                             'inputType': "number",
-                            'label': 'Max length',
+                            'label': _Helpers.T._('Max length', 'Admin'),
                             'value': "",
                             'step': '1',
                             'name': 'max_length'
@@ -247,7 +247,7 @@
                         },
                         'rows': {
                             'inputType': "number",
-                            'label': 'Rows',
+                            'label': _Helpers.T._('Rows', 'Admin'),
                             'value': "10",
                             'step': '1',
                             'name': 'rows'
@@ -269,42 +269,42 @@
                 //     }
                 // },
                 inputRadio: {
-                    classIcon: 'fa-clipboard-list',
+                    classIcon: 'radio_button_checked',
                     showFields: new Set(['optionBuilder']),
-                    label: "Input Radio group",
+                    label: _Helpers.T._("Input Radio group", "Admin"),
                     typeInput: "inputRadio",
                     fields: {
                         'optionBuilder': {
                             'inputType': "optionBuilder",
-                            'label': 'Options',
+                            'label': _Helpers.T._('Options', 'Admin'),
                             'value': "",
                             'name': 'options'
                         }
                     }
                 },
                 inputCheckbox: {
-                    classIcon: 'fa-check-square',
+                    classIcon: 'check_box',
                     showFields: new Set([]),
-                    label: "Checkbox",
+                    label: _Helpers.T._("Checkbox", "Admin"),
                     typeInput: "inputCheckbox",
                     fields: {
                         'defaultSelected': {
                             'inputType': "checkbox",
-                            'label': 'Default selected',
+                            'label': _Helpers.T._('Default selected', 'Admin'),
                             'value': false,
                             'name': 'defaultSelected'
                         }
                     }
                 },
                 select: {
-                    classIcon: 'fa-flag',
+                    classIcon: 'view_list',
                     showFields: new Set(['optionBuilder']),
-                    label: "Select",
+                    label: _Helpers.T._("Select", "Admin"),
                     typeInput: "select",
                     fields: {
                         'optionBuilder': {
                             'inputType': "optionBuilder",
-                            'label': 'Options',
+                            'label': _Helpers.T._('Options', 'Admin'),
                             'value': "",
                             'name': 'options'
                         }
@@ -354,14 +354,14 @@
                 //     ])
                 // },
                 header: {
-                    classIcon: 'fa-heading',
+                    classIcon: 'drag_handle',
                     showFields: new Set(['headerLevel', 'Headertext']),
-                    label: "Header",
+                    label: _Helpers.T._("Header", "Admin"),
                     typeInput: "header",
                     fields: {
                         'Headertext': {
                             'inputType': "text",
-                            'label': 'Header text',
+                            'label': _Helpers.T._('Header text', 'Admin'),
                             'value': "",
                             'name': 'headertext'
                         },
@@ -393,9 +393,9 @@
                     banField: new Set(['placeholder', 'defaultValue', 'required', 'tipText', 'required', 'label', 'name'])
                 },
                 paragraph: {
-                    classIcon: 'fa-paragraph',
+                    classIcon: 'format_textdirection_l_to_r',
                     showFields: new Set(['content']),
-                    label: "Paragraph",
+                    label: _Helpers.T._("Paragraph", "Admin"),
                     typeInput: "paragraph",
                     fields: {
                         'content': {
@@ -403,7 +403,7 @@
                             'label': 'Content',
                             'value': "",
                             'name': 'content',
-                            'placeholder': 'Put paragraph content'
+                            'placeholder': _Helpers.T._('Put paragraph content', 'Admin')
                         }
                     },
                     banField: new Set(['placeholder', 'defaultValue', 'required', 'tipText', 'required', 'label', 'name'])
@@ -437,19 +437,19 @@
                     fields: {
                         'label': {
                             'inputType': "text",
-                            'label': 'Label',
+                            'label': _Helpers.T._('Label', 'Admin'),
                             'value': "",
                             'name': 'label'
                         },
                         'name': {
                             'inputType': "text",
-                            'label': 'Name',
+                            'label': _Helpers.T._('Name', 'Admin'),
                             'value': "",
                             'name': 'name'
                         },
                         'required': {
                             'inputType': "checkbox",
-                            'label': 'Required',
+                            'label': _Helpers.T._('Required', 'Admin'),
                             'value': false,
                             'name': 'required'
                         },
@@ -461,7 +461,7 @@
                         },
                         'tipText': {
                             'inputType': "text",
-                            'label': 'Tip',
+                            'label': _Helpers.T._('Tip', 'Admin'),
                             'value': "",
                             'name': 'tipText'
                         },
@@ -473,7 +473,7 @@
                         },
                         'defaultValue': {
                             'inputType': "text",
-                            'label': 'Default value',
+                            'label': _Helpers.T._('Default value', 'Admin'),
                             'value': "",
                             'name': 'value'
                         }
@@ -561,6 +561,8 @@
 
                 _this.state.fieldsToEdit = arrayRes;
                 _this.state.formToGenerate = [];
+
+                _Helpers.T._("", "");
             }
             return _this;
         }
