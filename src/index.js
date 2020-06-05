@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './FormBuilder.css';
 import Field from './Field.js'
 import FieldInGenerator from './FieldInGenerator.js'
-import { T } from "../../utils/Helpers"
+import { T } from "../utils/Helpers"
 
 class FormBuilder extends Component {
 
@@ -31,8 +31,6 @@ class FormBuilder extends Component {
 
             this.state.fieldsToEdit = arrayRes
             this.state.formToGenerate = []
-
-            T._("","");
         }
     }
 
