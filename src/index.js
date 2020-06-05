@@ -742,7 +742,7 @@ class FormBuilder extends Component {
                 if (field!="toAllFields")
                     return <Field data-field={this.fields[field]} key={this.getCounter()} className="elementOFDrag"/>
             })}
-    <       /div>
+            </div>
         </div>
     );
     }
