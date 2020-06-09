@@ -141,7 +141,7 @@
                             null,
                             this.props.formJson.label
                         ),
-                        _react2.default.createElement("input", { type: this.props.formJson.inputType, onChange: function onChange(e) {
+                        _react2.default.createElement("input", { className: "form-control", type: this.props.formJson.inputType, onChange: function onChange(e) {
                                 return _this3.changeValue(e);
                             }, value: this.state.text,
                             maxLength: this.props.formJson.maxlength,
@@ -149,7 +149,9 @@
                             placeholder: this.props.formJson.placeholder,
                             step: this.props.formJson.step,
                             min: this.props.formJson.min,
-                            max: this.props.formJson.max }),
+                            max: this.props.formJson.max,
+                            readOnly: this.props.readOnly
+                        }),
                         this.props.formJson.Unit
                     )
                 );

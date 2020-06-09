@@ -60,6 +60,13 @@ class FormBuilder extends Component {
     pos = 0
     outsideForm = false
 
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+
     componentDidMount(){
 
         // if(this.props.jsonToLoad)
@@ -623,7 +630,7 @@ class FormBuilder extends Component {
                 },
                 'tipText': {
                     'inputType': "text",
-                    'label': T._('Tip','Admin'),
+                    'label': 'Title',
                     'value': "",
                     'name': 'tipText'
                 },
@@ -635,7 +642,7 @@ class FormBuilder extends Component {
                 },
                 'defaultValue': {
                     'inputType': "text",
-                    'label': T._('Default value','Admin'),
+                    'label': 'Default value',
                     'value': "",
                     'name': 'value'
                 },
@@ -715,25 +722,24 @@ class FormBuilder extends Component {
         delete this.formJson[index];
     }
 
-
-
     render() {
         return (
         <div id="formBuilder">
             <div id="formBuilder-form" className="formBuilderGroup">
-                {(this.state.fieldsToEdit.length == 0) ? <div>No fields</div> :
+                
+                {
                     this.state.fieldsToEdit.map(item=> (
                     <div key={item.number}  data-order-form-builder={item.number} draggable="true" className={item.classList+" elementOFDrag"}>
-                            {console.log(item.optionalJson)}
                             <FieldInGenerator deleteField={this.deleteField} addToFormJson={this.addToFormJson}  actualElem={item} definedFields={this.fields} jsonData={item.optionalJson || this.formJson[item.index] || {}} />
                     </div>))
                 }
             </div>
             <div id="optionColumn">
-            {Object.keys(this.fields).map((field)=>{
-                if (field!="toAllFields")
-                    return <Field data-field={this.fields[field]} key={this.getCounter()} className="elementOFDrag"/>
-            })}
+                {Object.keys(this.fields).map((field)=>{
+                    if (field!="toAllFields")
+                        return <Field data-field={this.fields[field]} key={this.getCounter()} className="elementOFDrag"/>
+                })}
+                <button type="button" id="preview-form" className="btn btn-primary" onClick={() => {this.props.onSaveForm(this.getJson())} }>Preview</button>
             </div>
         </div>
     );

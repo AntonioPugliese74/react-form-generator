@@ -35,6 +35,21 @@
         };
     }
 
+    function _defineProperty(obj, key, value) {
+        if (key in obj) {
+            Object.defineProperty(obj, key, {
+                value: value,
+                enumerable: true,
+                configurable: true,
+                writable: true
+            });
+        } else {
+            obj[key] = value;
+        }
+
+        return obj;
+    }
+
     var _extends = Object.assign || function (target) {
         for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i];
@@ -132,9 +147,6 @@
             };
 
             _this.state = newState;
-
-            console.log(props);
-
             _this.jsonField = _extends({}, props.jsonData, {
                 "typeField": props.actualElem.typefield
             });
@@ -154,40 +166,58 @@
                         'div',
                         { className: "headerBar index_" + this.props.actualElem.index },
                         _react2.default.createElement(
-                            'b',
+                            'div',
                             null,
-                            'Field ',
-                            this.props.jsonData.label
+                            _react2.default.createElement(
+                                'b',
+                                null,
+                                'Field ',
+                                this.props.jsonData.readOnly ? this.props.jsonData.label : ""
+                            ),
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'typeField' },
+                                '(',
+                                this.props.actualElem.typefield,
+                                ')'
+                            ),
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'requied' },
+                                this.props.jsonData.required ? "*" : ""
+                            )
                         ),
                         _react2.default.createElement(
-                            'span',
-                            { className: 'typeField' },
-                            '(',
-                            this.props.actualElem.typefield,
-                            ')'
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'requied' },
-                            this.props.jsonData.required ? "*" : ""
-                        ),
-                        _react2.default.createElement(
-                            'button',
-                            { onClick: function onClick() {
-                                    _this2.setState(_extends({}, _this2.state, {
-                                        generalFieldsShow: !_this2.state.generalFieldsShow
-                                    }));
-                                } },
-                            'Edit field'
-                        ),
-                        _react2.default.createElement(
-                            'button',
-                            { onClick: function onClick() {
-                                    if (window.confirm("Are you sure you want delete this field?")) {
-                                        _this2.props.deleteField(_this2.props.actualElem.index);
-                                    }
-                                } },
-                            'Delete field'
+                            'div',
+                            { className: 'buttons' },
+                            !this.props.jsonData.readOnly && _react2.default.createElement(
+                                'button',
+                                { className: 'btn btn-secondary delete_button', onClick: function onClick() {
+                                        if (window.confirm("Are you sure you want delete this field?")) {
+                                            _this2.props.deleteField(_this2.props.actualElem.index);
+                                        }
+                                    } },
+                                _react2.default.createElement(
+                                    'i',
+                                    { className: 'material-icons' },
+                                    'delete'
+                                ),
+                                'Delete field'
+                            ),
+                            _react2.default.createElement(
+                                'button',
+                                { className: 'btn btn-secondary edit_button', onClick: function onClick() {
+                                        _this2.setState(_extends({}, _this2.state, {
+                                            generalFieldsShow: !_this2.state.generalFieldsShow
+                                        }));
+                                    } },
+                                _react2.default.createElement(
+                                    'i',
+                                    { className: 'material-icons' },
+                                    'edit'
+                                ),
+                                'Edit field'
+                            )
                         )
                     ),
                     _react2.default.createElement(
@@ -202,17 +232,17 @@
                                     if (_this2.props.definedFields[_this2.props.actualElem.typefield].banField != undefined) if (_this2.props.definedFields[_this2.props.actualElem.typefield].banField.has(item)) return;
                                     if (actualInput) switch (actualInput.inputType) {
                                         case 'textarea':
-                                            return _react2.default.createElement(_textArea2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_textArea2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'text':
-                                            return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'number':
-                                            return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'checkbox':
-                                            return _react2.default.createElement(_checkbox2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_checkbox2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'optionBuilder':
-                                            return _react2.default.createElement(_optionBuilder2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_optionBuilder2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'select':
-                                            return _react2.default.createElement(_select2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_select2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                     }
                                 }
                             }),
@@ -221,17 +251,17 @@
                                 if (_this2.objectField.showFields && _this2.objectField.showFields.has(item)) {
                                     if (actualInput) switch (actualInput.inputType) {
                                         case 'textarea':
-                                            return _react2.default.createElement(_textArea2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_textArea2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'text':
-                                            return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'number':
-                                            return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'checkbox':
-                                            return _react2.default.createElement(_checkbox2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_checkbox2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'optionBuilder':
-                                            return _react2.default.createElement(_optionBuilder2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_optionBuilder2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         case 'select':
-                                            return _react2.default.createElement(_select2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                            return _react2.default.createElement(_select2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                     }
                                 }
                             })
@@ -241,12 +271,21 @@
                             { className: 'button-show-more' },
                             _react2.default.createElement(
                                 'button',
-                                { onClick: function onClick() {
+                                { className: 'btn btn-secondary', onClick: function onClick() {
                                         _this2.setState(_extends({}, _this2.state, {
                                             extraFieldsShow: !_this2.state.extraFieldsShow
                                         }));
                                     } },
-                                this.state.extraFieldsShow ? "Hide extra fields" : "Show extra fields"
+                                this.state.extraFieldsShow ? "Hide extra fields" : "Show extra fields",
+                                this.state.extraFieldsShow ? _react2.default.createElement(
+                                    'i',
+                                    { className: 'material-icons' },
+                                    'expand_less'
+                                ) : _react2.default.createElement(
+                                    'i',
+                                    { className: 'material-icons' },
+                                    'expand_more'
+                                )
                             )
                         ),
                         _react2.default.createElement(
@@ -256,22 +295,24 @@
                                 'div',
                                 { className: 'fieldsBottom' },
                                 Object.keys(this.props.definedFields['toAllFields'].fields).map(function (item) {
+                                    var _React$createElement;
+
                                     var actualInput = _this2.props.definedFields['toAllFields'].fields[item];
                                     if (!_this2.props.definedFields['toAllFields'].showFields.has(item)) {
                                         if (_this2.props.definedFields[_this2.props.actualElem.typefield].banField != undefined) if (_this2.props.definedFields[_this2.props.actualElem.typefield].banField.has(item)) return;
                                         if (actualInput) switch (actualInput.inputType) {
                                             case 'textarea':
-                                                return _react2.default.createElement(_textArea2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_textArea2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'text':
-                                                return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'number':
-                                                return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'checkbox':
-                                                return _react2.default.createElement(_checkbox2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_checkbox2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'optionBuilder':
-                                                return _react2.default.createElement(_optionBuilder2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_optionBuilder2.default, (_React$createElement = { readOnly: _this2.props.jsonData.readOnly }, _defineProperty(_React$createElement, 'readOnly', _this2.props.formJson.readOnly), _defineProperty(_React$createElement, 'index', _this2.props.actualElem.index), _defineProperty(_React$createElement, 'updateLabel', _this2.updateLabel), _defineProperty(_React$createElement, 'jsonData', _this2.jsonField), _defineProperty(_React$createElement, 'jsonCollector', _this2.addToJson), _defineProperty(_React$createElement, 'key', _this2.getCounter()), _defineProperty(_React$createElement, 'formJson', actualInput), _React$createElement));
                                             case 'select':
-                                                return _react2.default.createElement(_select2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_select2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         }
                                     }
                                 }),
@@ -280,17 +321,17 @@
                                     if (!(_this2.objectField.showFields && _this2.objectField.showFields.has(item))) {
                                         if (actualInput) switch (actualInput.inputType) {
                                             case 'textarea':
-                                                return _react2.default.createElement(_textArea2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_textArea2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'text':
-                                                return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'number':
-                                                return _react2.default.createElement(_input2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_input2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'checkbox':
-                                                return _react2.default.createElement(_checkbox2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_checkbox2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'optionBuilder':
-                                                return _react2.default.createElement(_optionBuilder2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_optionBuilder2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                             case 'select':
-                                                return _react2.default.createElement(_select2.default, { index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
+                                                return _react2.default.createElement(_select2.default, { readOnly: _this2.props.jsonData.readOnly, index: _this2.props.actualElem.index, updateLabel: _this2.updateLabel, jsonData: _this2.jsonField, jsonCollector: _this2.addToJson, key: _this2.getCounter(), formJson: actualInput });
                                         }
                                     }
                                 })

@@ -135,6 +135,11 @@
         }
 
         _createClass(Checkbox, [{
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                $('#formBuilder input[type=checkbox]').checkbox();
+            }
+        }, {
             key: 'render',
             value: function render() {
                 var _this2 = this;
@@ -147,19 +152,19 @@
                         { className: 'radio-box' },
                         _react2.default.createElement(
                             'label',
-                            { className: 'mainLabel' },
-                            _react2.default.createElement(
-                                'span',
-                                null,
-                                this.props.formJson.label
-                            ),
+                            { className: 'mainLabel radiobox' },
                             _react2.default.createElement('input', {
                                 type: 'checkbox',
                                 checked: this.state.is_checked,
                                 onChange: function onChange() {
                                     return _this2.handleInputChange();
                                 }
-                            })
+                            }),
+                            _react2.default.createElement(
+                                'span',
+                                null,
+                                this.props.formJson.label
+                            )
                         )
                     )
                 );

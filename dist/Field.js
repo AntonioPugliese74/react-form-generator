@@ -87,7 +87,7 @@
             value: function render() {
                 return _react2.default.createElement(
                     'div',
-                    { draggable: 'true', className: 'field fieldToDrag', 'data-type-field': this.props['data-field']['typeInput'] },
+                    { draggable: 'true', className: 'field fieldToDrag', 'data-type-field': this.props['data-field']['typeInput'], title: 'Drag element to add it' },
                     _react2.default.createElement(
                         'span',
                         null,

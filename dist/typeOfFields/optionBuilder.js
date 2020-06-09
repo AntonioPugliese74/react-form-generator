@@ -161,13 +161,19 @@
                             "div",
                             { className: "optionFields" },
                             _react2.default.createElement(
-                                "ol",
+                                "ul",
                                 null,
-                                this.state.resultOption.map(function (item) {
+                                this.state.resultOption.map(function (item, index) {
                                     return _react2.default.createElement(
                                         "li",
                                         { key: item.pos },
-                                        _react2.default.createElement("input", { type: "text", placeholder: "Label", value: item.label || "", onChange: function onChange(e) {
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "index" },
+                                            index + 1,
+                                            "."
+                                        ),
+                                        _react2.default.createElement("input", { type: "text", className: "form-control", placeholder: "Label", value: item.label || "", onChange: function onChange(e) {
                                                 _this2.setState(_extends({}, _this2.state, {
                                                     resultOption: [].concat(_toConsumableArray(_this2.state.resultOption.map(function (elem) {
                                                         if (elem.pos == item.pos) elem.label = e.target.value;
@@ -177,7 +183,7 @@
                                                     _this2.props.jsonCollector(_defineProperty({}, _this2.props.formJson.name, _this2.state.resultOption));
                                                 });
                                             } }),
-                                        _react2.default.createElement("input", { type: "text", placeholder: "Value", value: item.value || "", onChange: function onChange(e) {
+                                        _react2.default.createElement("input", { type: "text", className: "form-control", placeholder: "Value", value: item.value || "", onChange: function onChange(e) {
                                                 _this2.setState(_extends({}, _this2.state, {
                                                     resultOption: [].concat(_toConsumableArray(_this2.state.resultOption.map(function (elem) {
                                                         if (elem.pos == item.pos) elem.value = e.target.value;
@@ -190,6 +196,8 @@
                                         item.pos == 1 ? "" : _react2.default.createElement(
                                             "button",
                                             {
+                                                className: "btn btn-secondary btn-remove-option",
+                                                title: "Remove option",
                                                 onClick: function onClick() {
                                                     _this2.setState(_extends({}, _this2.state, {
                                                         resultOption: [].concat(_toConsumableArray(_this2.state.resultOption.filter(function (elem) {
@@ -199,20 +207,29 @@
                                                     }));
                                                 }
                                             },
-                                            "X"
+                                            _react2.default.createElement(
+                                                "i",
+                                                { className: "material-icons" },
+                                                "cancel"
+                                            )
                                         )
                                     );
                                 })
                             ),
                             _react2.default.createElement(
                                 "button",
-                                { onClick: function onClick() {
+                                { className: "btn btn-secondary", onClick: function onClick() {
                                         _this2.setState(_extends({}, _this2.state, {
                                             resultOption: [].concat(_toConsumableArray(_this2.state.resultOption), [{ pos: _this2.getCounter(), label: "", value: "" }])
                                         }));
                                         _this2.getCounter();
                                     } },
-                                "Add position"
+                                _react2.default.createElement(
+                                    "i",
+                                    { className: "material-icons" },
+                                    "add"
+                                ),
+                                "Add option"
                             )
                         )
                     )

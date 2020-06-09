@@ -25,6 +25,20 @@
         };
     }
 
+    var _extends = Object.assign || function (target) {
+        for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i];
+
+            for (var key in source) {
+                if (Object.prototype.hasOwnProperty.call(source, key)) {
+                    target[key] = source[key];
+                }
+            }
+        }
+
+        return target;
+    };
+
     function _defineProperty(obj, key, value) {
         if (key in obj) {
             Object.defineProperty(obj, key, {
@@ -143,9 +157,9 @@
                             null,
                             this.props.formJson.label
                         ),
-                        _react2.default.createElement('textarea', { placeholder: this.props.formJson.placeholder, onChange: function onChange(e) {
+                        _react2.default.createElement('textarea', _extends({ placeholder: this.props.formJson.placeholder, onChange: function onChange(e) {
                                 return _this3.changeValue(e);
-                            }, defaultValue: this.state.text })
+                            }, defaultValue: this.state.text }, this.props.formJson.readOnly ? "disabled" : ""))
                     )
                 );
             }

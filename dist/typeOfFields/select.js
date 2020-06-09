@@ -116,6 +116,11 @@
                 this.props.jsonCollector(_defineProperty({}, this.props.formJson.name, e.target.value));
             }
         }, {
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                $('select[name=' + this.props.formJson.name + ']').combobox();
+            }
+        }, {
             key: 'render',
             value: function render() {
                 var _this2 = this;
@@ -124,7 +129,7 @@
                     'div',
                     { className: 'field-input' },
                     _react2.default.createElement(
-                        'label',
+                        'span',
                         { className: 'mainLabel' },
                         _react2.default.createElement(
                             'span',

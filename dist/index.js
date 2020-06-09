@@ -461,7 +461,7 @@
                         },
                         'tipText': {
                             'inputType': "text",
-                            'label': _Helpers.T._('Tip', 'Admin'),
+                            'label': 'Title',
                             'value': "",
                             'name': 'tipText'
                         },
@@ -473,7 +473,7 @@
                         },
                         'defaultValue': {
                             'inputType': "text",
-                            'label': _Helpers.T._('Default value', 'Admin'),
+                            'label': 'Default value',
                             'value': "",
                             'name': 'value'
                         }
@@ -587,6 +587,14 @@
                 });
 
                 return result;
+            }
+        }, {
+            key: 'componentWillUnmount',
+            value: function componentWillUnmount() {
+                // fix Warning: Can't perform a React state update on an unmounted component
+                this.setState = function (state, callback) {
+                    return;
+                };
             }
         }, {
             key: 'componentDidMount',
@@ -814,15 +822,10 @@
                     _react2.default.createElement(
                         'div',
                         { id: 'formBuilder-form', className: 'formBuilderGroup' },
-                        this.state.fieldsToEdit.length == 0 ? _react2.default.createElement(
-                            'div',
-                            null,
-                            'No fields'
-                        ) : this.state.fieldsToEdit.map(function (item) {
+                        this.state.fieldsToEdit.map(function (item) {
                             return _react2.default.createElement(
                                 'div',
                                 { key: item.number, 'data-order-form-builder': item.number, draggable: 'true', className: item.classList + " elementOFDrag" },
-                                console.log(item.optionalJson),
                                 _react2.default.createElement(_FieldInGenerator2.default, { deleteField: _this3.deleteField, addToFormJson: _this3.addToFormJson, actualElem: item, definedFields: _this3.fields, jsonData: item.optionalJson || _this3.formJson[item.index] || {} })
                             );
                         })
@@ -832,7 +835,14 @@
                         { id: 'optionColumn' },
                         Object.keys(this.fields).map(function (field) {
                             if (field != "toAllFields") return _react2.default.createElement(_Field2.default, { 'data-field': _this3.fields[field], key: _this3.getCounter(), className: 'elementOFDrag' });
-                        })
+                        }),
+                        _react2.default.createElement(
+                            'button',
+                            { type: 'button', id: 'preview-form', className: 'btn btn-primary', onClick: function onClick() {
+                                    _this3.props.onSaveForm(_this3.getJson());
+                                } },
+                            'Preview'
+                        )
                     )
                 );
             }
